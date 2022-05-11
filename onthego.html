@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK IT OUT</title>
+    <link rel="stylesheet" href="css/design.css">
+      <script src="js/vue.min.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/isd2tqj.css">
+       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+</head>
+
+<body>
+
+<div class="container1">
+    
+    <div class="topbar">
+        
+            <div class="toplogo"><img src="images/logo.png"></div>
+<ul class="nav">
+  <li class="button-dropdown">
+    <a href="javascript:void(0)" class="dropdown-toggle"> <img src="images/menu.png">
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="home.html">New workout</a>
+     <a href="history.html">History</a>
+          <a href="#">Difficulty Level</a>
+          <a href="#">Account Settings</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    </div>
+
+    <div class="title"> ON-the-GO </div>
+
+    <div id="appotg" class="container">   
+        
+        
+<ul class="otg">      <li v-for="item in items" :class="{ 'removed': item.checked }">          
+    
+    <div class="checkbox">              <label>                    <input type="checkbox" v-model="item.checked"> {{ item.text }}                </label>           </div>     </li></ul>
+        
+        <div class="add">
+        
+        <div class="input-group">      <input v-model="newItem" @keyup.enter="addItem" placeholder="Add Exercise" type="text" class="form-control">
+        </div>
+    
+</div>
+    
+    
+    
+    
+    </div>
+  
+       
+     <div class="dropup">
+  <button class="dropbtn"><img src="images/up.png"></button>
+     
+  <div class="dropup-content">
+         <div class="popgrid">
+   <div id="pop" class="pause">Pause <br> Workout</div>
+             <a href="history.html">
+      <div id="pop" class="end">End <br> Workout</div></a></div>
+  </div>
+    
+    </div>
+    
+    
+    
+    </div>
+    
+        <script>
+             jQuery(document).ready(function (e) {
+    function t(t) {
+        e(t).bind("click", function (t) {
+            t.preventDefault();
+            e(this).parent().fadeOut()
+        })
+    }
+    e(".dropdown-toggle").click(function () {
+        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
+        e(".button-dropdown .dropdown-menu").hide();
+        e(".button-dropdown .dropdown-toggle").removeClass("active");
+        if (t) {
+            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+        }
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+    })
+});
+ 
+    
+    new Vue({    
+        el: '#appotg',     
+        
+    data: {
+        newItem: '',
+        items: [{
+            text: 'Walk 20 min',
+            checked: false
+        }, {
+            text: '20 Sit-ups',            checked: false     },{
+            text: '30 Jumping Jacks',            checked: false     },{
+            text: '20 Push-ups',            checked: false     },{
+            text: '25 Squats',            checked: false     }
+               
+               
+               
+               ], },
+        
+        
+        methods: {      addItem: function() {
+            var text;         text = this.newItem.trim();        if (text) {                 this.items.push({                      text: text,                       checked: false                 });                this.newItem = '';            }    }}
+    
+    });
+    
+    
+    
+    </script>
+    
+    
+    
+</body>
+</html>

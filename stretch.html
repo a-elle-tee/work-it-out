@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK IT OUT</title>
+    <link rel="stylesheet" href="css/design.css">
+
+     <script src="js/vue.min.js">
+    </script>
+<link rel="stylesheet" href="https://use.typekit.net/isd2tqj.css">
+
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body>
+    
+        
+ 
+
+<div class="container1">
+    
+    <div class="topbar">
+        
+            <div class="toplogo"><img src="images/logo.png"></div>
+<ul class="nav">
+  <li class="button-dropdown">
+    <a href="javascript:void(0)" class="dropdown-toggle"> <img src="images/menu.png">
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+     <a href="home.html">New workout</a>
+         <a href="history.html">History</a>
+          <a href="#">Difficulty Level</a>
+          <a href="#">Account Settings</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    </div>
+
+
+    <div class="title"> Stretch n' Chill </div>
+    
+    <div id="appstretch">
+
+  <transition-group name="fade">
+      <div id="liststretch" v-for="(todo,index) in todos" :key="todo.text" @click="deleteItem(index)">
+        {{ todo.text}}
+      </div>
+  </transition-group>
+</div>
+   
+    <div class="dropup">
+  <button class="dropbtn"><img src="images/up.png"></button>
+     
+  <div class="dropup-content">
+         <div class="popgrid">
+   <div id="pop" class="pause">Pause <br> Workout</div>
+             <a href="history.html">
+      <div id="pop" class="end">End <br> Workout</div></a></div>
+  </div>
+    
+    </div>
+    
+    
+    
+    </div>
+    
+           <script>
+                jQuery(document).ready(function (e) {
+    function t(t) {
+        e(t).bind("click", function (t) {
+            t.preventDefault();
+            e(this).parent().fadeOut()
+        })
+    }
+    e(".dropdown-toggle").click(function () {
+        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
+        e(".button-dropdown .dropdown-menu").hide();
+        e(".button-dropdown .dropdown-toggle").removeClass("active");
+        if (t) {
+            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+        }
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+    })
+});
+ 
+   
+/*Remove list animation source:https://stackoverflow.com/questions/50090740/add-css-animation-before-deleting-array-item*/
+ 
+     new Vue({
+  el: "#appstretch",
+  data: {
+    todos: [
+      { text: "Mountain Pose  " + '\xa0\xa0\xa0\xa0' + "    10 breaths", done: false },
+      { text: "Vinyasa   " + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "   5 cycles", done: false },
+      { text: " Cat-cow   " + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "   10 cycles", done: true },
+      { text: "Cobra   " + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "   10 breaths", done: true },
+      { text: "Pyramid    " + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "  10 breaths", done: true },
+      { text: "Warrior   " + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "   10 breaths", done: true }
+    ]
+  },
+  methods: {
+		deleteItem(index) {
+    	this.todos.splice(index, 1);
+    }
+  }
+})
+  
+               
+               
+   
+               
+    </script>
+
+</body>
+</html>

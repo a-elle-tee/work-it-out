@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK IT OUT</title>
+    <link rel="stylesheet" href="css/design.css">
+<link rel="stylesheet" href="https://use.typekit.net/isd2tqj.css">
+
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+<div class="container1">
+    
+    <div class="topbar">
+        
+            <div class="toplogo"><img src="images/logo.png"></div>
+<ul class="nav">
+  <li class="button-dropdown">
+    <a href="javascript:void(0)" class="dropdown-toggle"> <img src="images/menu.png">
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+     <a href="home.html">New workout</a>
+          <a href="history.html">History</a>
+          <a href="#">Difficulty Level</a>
+          <a href="#">Account Settings</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    </div>
+    
+    <div class="title"> Fun Run </div>
+    <div class="map">
+    <iframe width="375" height="260" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=park&key=AIzaSyBhSXjRna0RuIsdcsJRR2cs_jQ5cpjKjXY" allowfullscreen></iframe></div>
+    
+    <div class="measure">
+        <div class="distance">
+    <div id="tripmeter">
+  
+<!--
+    <span id="startLat"></span>
+      <span id="currentLat"></span>
+        <span id="currentLon"></span>
+-->
+  <p>
+    Distance Covered</p>
+        <div class="dis">
+    <span id="distance">0</span> km</div>
+  
+</div>
+    </div>
+
+    <div class="timer">
+        <p>Time</p>
+        <div class="t"><span id="time">0:00.000</span></div>
+    <div class="go">
+    <input class="button" type="button" value="start" onclick="stopwatch.start();">
+    <input class="button" type="button" value="stop" onclick="stopwatch.stop();">
+            <input class="button" type="button" value="reset" onclick="stopwatch.reset();">
+
+    </div>
+    
+    
+    </div>
+    </div>
+    
+       
+    <div class="dropup">
+  <button class="dropbtn"><img src="images/up.png"></button>
+     
+  <div class="dropup-content">
+         <div class="popgrid">
+   <div id="pop" class="pause">Pause <br> Workout</div>
+             <a href="history.html">
+      <div id="pop" class="end">End <br> Workout</div></a></div>
+  </div>
+    
+    </div>
+    
+    
+        </div>
+
+    
+    
+        
+
+    
+    <script>
+         jQuery(document).ready(function (e) {
+    function t(t) {
+        e(t).bind("click", function (t) {
+            t.preventDefault();
+            e(this).parent().fadeOut()
+        })
+    }
+    e(".dropdown-toggle").click(function () {
+        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
+        e(".button-dropdown .dropdown-menu").hide();
+        e(".button-dropdown .dropdown-toggle").removeClass("active");
+        if (t) {
+            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+        }
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+    })
+});
+ 
+     function Stopwatch(text, updateInterval) {
+
+    this.text = text;
+    this.updateInterval = updateInterval ? updateInterval : 100;
+    this.startAt = 0;
+    this.lapTime = 0;
+
+    //returns current time
+    this.now = function () {
+        return (new Date()).getTime();
+    };
+
+    this.start = function () {
+        this.startAt = this.startAt ? this.startAt : this.now();
+        var that = this;
+        this.timer = this.timer ? this.timer : setInterval(function () {
+            that.update()
+        }, this.updateInterval);
+    };
+
+    this.stop = function () {
+        this.update();
+        this.lapTime = this.startAt ? this.lapTime + this.now() - this.startAt : this.lapTime;
+        clearInterval(this.timer);
+        this.startAt = this.timer = 0;
+    };
+
+    this.reset = function () {
+        this.lapTime = 0;
+        this.startAt = this.startAt ? this.now() : 0;
+        this.update();
+    };
+
+    //adds zero padding to numbers
+    this.pad = function (num, size) {
+        var s = "00000" + num;
+        return s.substr(s.length - size);
+    };
+
+    this.formattedTime = function () {
+        var m, s, ms;
+        var time = this.lapTime + (this.startAt ? this.now() - this.startAt : 0);
+
+        time = time % (60 * 60 * 1000);
+        m = Math.floor(time / (60 * 1000));
+        time = time % (60 * 1000);
+        s = Math.floor(time / 1000);
+        ms = time % 1000;
+
+        return m + ':' + this.pad(s, 2) + '.' + this.pad(ms, 3);
+    };
+
+    this.update = function () {
+        this.text.innerHTML = this.formattedTime();
+    };
+}
+    
+    var stopwatch = new Stopwatch(document.getElementById('time'));
+        
+        
+        
+        
+        // check for Geolocation support
+if (navigator.geolocation) {
+  console.log('Geolocation is supported!');
+}
+else {
+  console.log('Geolocation is not supported for this Browser/OS version yet.');
+}
+    
+        window.onload = function() {
+  var startPos;
+  navigator.geolocation.getCurrentPosition(function(position) {
+    startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  });
+};
+        
+        window.onload = function() {
+  var startPos;
+  navigator.geolocation.getCurrentPosition(function(position) {
+        startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  }, function(error) {
+    alert('Error occurred. Error code: ' + error.code);
+//       0: unknown error
+//       1: permission denied
+//       2: position unavailable (error response from locaton provider)
+//       3: timed out
+  });
+};
+    navigator.geolocation.watchPosition(function(position) {
+  document.getElementById('currentLat').innerHTML = position.coords.latitude;
+  document.getElementById('currentLon').innerHTML = position.coords.longitude;
+});
+        
+        
+navigator.geolocation.watchPosition(function(position) {
+  document.getElementById('currentLat').innerHTML = position.coords.latitude;
+  document.getElementById('currentLon').innerHTML = position.coords.longitude;
+});
+        
+        
+navigator.geolocation.watchPosition(function(position) {
+   document.getElementById('currentLat').innerHTML = position.coords.latitude;
+  document.getElementById('currentLon').innerHTML = position.coords.longitude;
+  document.getElementById('distance').innerHTML =
+      calculateDistance(startPos.coords.latitude, startPos.coords.longitude,
+    position.coords.latitude,
+    position.coords.longitude);
+});
+        
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+  var R = 6371; // km
+  var dLat = (lat2 - lat1).toRad();
+  var dLon = (lon2 - lon1).toRad(); 
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+          Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+  var d = R * c;
+  return d;
+}
+Number.prototype.toRad = function() {
+  return this * Math.PI / 180;
+}
+        
+    </script>
+    
+    
+
+    
+    
+</body>
+</html>

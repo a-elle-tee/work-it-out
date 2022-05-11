@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK IT OUT</title>
+    <link rel="stylesheet" href="css/design.css">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://use.typekit.net/isd2tqj.css">
+    <style>
+  @import url("https://use.typekit.net/isd2tqj.css");
+</style>
+        
+    
+    
+</head>
+
+<body>
+
+<div class="container1">
+    
+<div class="topbar">
+
+
+<ul class="nav">
+  <li class="button-dropdown">
+    <a href="javascript:void(0)" class="dropdown-toggle"> <img src="images/menu.png">
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+       <a href="home.html">New workout</a>
+          <a href="history.html">History</a>
+          <a href="#">Difficulty Level</a>
+          <a href="#">Account Settings</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    </div>
+    
+<div class="homebanner"> What kind of workout<br> would you like to do today?</div>
+
+<div class="buttons">
+    <a href="hiit.html">
+    <div class="hiit"> HIIT</div></a>
+    <a href="stretch.html">
+    <div class="stretch">Stretch <br>n' <br>Chill</div></a>
+    <a href="funrun.html">
+    <div class="run">Fun <br>Run</div></a>
+    <a href="onthego.html">
+    <div class="onthego">ON<br>the<br>GO</div></a>
+    </div>
+
+    
+
+    </div>
+    
+        <div class="footlogo">
+    <img src="images/logo.png"></div>
+    
+    <script>
+        
+        
+        jQuery(document).ready(function (e) {
+    function t(t) {
+        e(t).bind("click", function (t) {
+            t.preventDefault();
+            e(this).parent().fadeOut()
+        })
+    }
+    e(".dropdown-toggle").click(function () {
+        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
+        e(".button-dropdown .dropdown-menu").hide();
+        e(".button-dropdown .dropdown-toggle").removeClass("active");
+        if (t) {
+            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+        }
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
+    });
+    e(document).bind("click", function (t) {
+        var n = e(t.target);
+        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+    })
+});
+    
+    
+    </script>
+    
+
+</body>
+</html>
